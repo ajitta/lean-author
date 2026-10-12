@@ -1,6 +1,6 @@
 ---
 status: draft
-revised: 2026-10-12
+revised: 2026-10-13
 ---
 
 # 별도 repo + 자체 마켓플레이스로 배포하는 방안
@@ -90,16 +90,16 @@ lean-author/
 ## 6. 단계
 
 - [x] P0 결정: N1–N6 확정(§4). 01-discovery에 D20–D22 추가, NFR-3·§7 수정
-- [ ] P1 repo 생성: `gh repo create ajitta/lean-author --public`, §3 구조, `LICENSE`, README(40단어 이상, 설치 표), `.gitignore`(`.venv/`, `.claude/settings.local.json`, `CLAUDE.local.md`, `.claude/superclaude/`), `pyproject.toml`(dev: pytest, pyyaml, ruff)
-- [ ] P2 도구 이식: §5의 `package.py`·테스트를 `plugin/` 기준으로 고침. CI: `python tools/package.py --check`, `pytest`, `ruff check`
-- [ ] P3 플러그인 골격: `plugin.json` 0.1.0(`displayName`, `homepage`, `repository`, `license`), `plugin/README.md`, 빈 스킬 하나로 `claude plugin validate . --strict` 통과, `claude plugin marketplace add ./`로 로컬 설치 확인 (R-9, R-11)
+- [x] P1 repo 생성: `gh repo create ajitta/lean-author --public`, §3 구조, `LICENSE`, README(40단어 이상, 설치 표), `.gitignore`(`.venv/`, `.claude/settings.local.json`, `CLAUDE.local.md`, `.claude/superclaude/`), `pyproject.toml`(dev: pytest, pyyaml, ruff)
+- [x] P2 도구 이식: §5의 `package.py`·테스트를 `plugin/` 기준으로 고침. CI: `python tools/package.py --check`, `pytest`, `ruff check`
+- [x] P3 플러그인 골격: `plugin.json` 0.1.0(`displayName`, `homepage`, `repository`, `license`), `plugin/README.md`, 빈 스킬 하나로 `claude plugin validate . --strict` 통과, `claude plugin marketplace add ./`로 로컬 설치 확인 (R-9, R-11)
 - [ ] P4 스킬 구현: `/sc:plan`의 05-plan으로 따로 진행 (이 문서 범위 밖)
 - [ ] P5 설치 확인 (1.0.0 태그 전):
-  - Claude Code: 격리한 `CLAUDE_CONFIG_DIR`에서 `claude plugin marketplace add ajitta/lean-author` → `claude plugin install lean-author@lean-author` → 스킬 로드, `#lean-author--v<ver>` 고정도 확인. `claude plugin eval` 실행
-  - claude.ai: Add marketplace와 Upload plugin(zip) 두 경로 (요청자 확인)
-  - Codex: `plugin/skills/lean-author`를 `~/.agents/skills/`에 복사 → `$lean-author` 호출
+  - [x] Claude Code (0.1.0, 2026-10-13): 격리한 `CLAUDE_CONFIG_DIR`에서 `claude plugin marketplace add ajitta/lean-author` → `claude plugin install lean-author@lean-author` → 스킬 로드, `#lean-author--v<ver>` 고정도 확인. `claude plugin eval` 실행
+  - [ ] claude.ai: Add marketplace와 Upload plugin(zip) 두 경로 (요청자 확인)
+  - [ ] Codex: `plugin/skills/lean-author`를 `~/.agents/skills/`에 복사 → `$lean-author` 호출
 - [ ] P6 선택: claude.ai/directory/manage 제출 (R-8, 유료 플랜)
-- [ ] P7 superclaude 정리: N4대로 이 폴더 README에 이동 위치 기록. superclaude README·Pages에 링크를 넣을지는 따로 묻는다
+- [x] P7 superclaude 정리: N4대로 superclaude 쪽 README에 이동 위치 기록. superclaude README·Pages에 링크를 넣을지는 따로 묻는다
 
 ## 7. 위험과 미확인
 
@@ -116,3 +116,14 @@ lean-author/
 - `claude plugin validate . --strict` 통과, CI(검증·pytest·ruff) green
 - claude.ai zip 업로드 성공 (요청자 확인)
 - 01-discovery에 D20 반영
+
+## Deviations
+
+- P1–P3 (2026-10-13, `301d3dc`, `a27c83e`): repo는 `ajitta/lean-author`, 로컬 폴더는 `C:\Users\ajitta\Repos\ajitta\lean-author`(요청자 지정).
+- `tools/package.py`: socratic 버전에서 `write_plugin_dir`를 뺐다(하위 폴더 구조라 생성 사본이 없음). `validate_manifest`를 `validate_plugin`으로 바꾸고 `license` 필수, `plugin/bin/` 금지, `plugin/SKILL.md` 금지, 스킬 없음 검사를 더했다. `TEXT_SUFFIXES`에 `.py`·`.sh`(F-8).
+- `claude plugin validate plugin --strict`의 권고에 따라 `plugin/README.md`에 한 단계 설치 줄(`/plugin install lean-author --marketplace ajitta/lean-author`)을 넣었다.
+- CI 첫 실행이 ubuntu에서 ruff EXE001(shebang 있는데 실행 비트 없음)로 실패 → `git update-index --chmod=+x tools/package.py`로 수정, 두 OS green.
+- CI 경고: `actions/checkout@v4`·`astral-sh/setup-uv@v6`가 Node 20 대상(강제로 Node 24에서 실행됨). 실패는 아니라 그대로 둠.
+- `claude plugin validate`는 CI에 넣지 않았다(인증 없이 도는지 미확인). 로컬에서 `.`과 `plugin` 둘 다 `--strict` 통과.
+- GitHub 설치 캐시에는 `plugin/` 내용만 들어감을 확인(`.claude-plugin`, `skills`, `README.md`).
+
