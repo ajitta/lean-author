@@ -1,0 +1,23 @@
+{
+  "skill_name": "react-components",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "in src/components/ProductSearch.tsx the results list flashes the previous results for a split second every time I type. can you fix it? we're on React 19 with vite",
+      "expected_output": "The useEffect that copies filtered results into state is replaced by a value computed during render; type check, lint and the component's tests are run.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Review the diff in feature/todo-list before I merge it. It adds TodoList.tsx and TodoItem.tsx plus a test file.",
+      "expected_output": "A review with Summary / Findings / Verification sections, findings ordered by user impact with file:line, no files edited.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Add a like button with a counter to app/blog/[slug]/page.tsx. It's a Next.js 15 app router project and the page is a server component right now.",
+      "expected_output": "A small client component marked \"use client\" holds the state and is rendered from the unchanged server page; the page stays a server component.",
+      "files": []
+    }
+  ]
+}

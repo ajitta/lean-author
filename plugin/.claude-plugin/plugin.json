@@ -1,0 +1,13 @@
+{
+  "name": "lean-author",
+  "displayName": "Lean Author",
+  "version": "0.1.0",
+  "description": "Authors Claude agents, skills and commands as a plugin, with lean, high-signal instructions in Markdown plus XML tags. Pre-release: the skill is a placeholder until 1.0.0.",
+  "author": {
+    "name": "ajitta",
+    "url": "https://github.com/ajitta"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/ajitta/lean-author",
+  "repository": "https://github.com/ajitta/lean-author"
+}

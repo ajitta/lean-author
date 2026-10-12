@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Claude Code personal/runtime files (incl. a local-scope SuperClaude install)
+CLAUDE.local.md
+.claude/settings.local.json
+.claude/superclaude/
+.claude/.superclaude_hooks/
+.claude/agent-memory*/
+.claude/projects/
+
+# local scratch
+/.scratch/

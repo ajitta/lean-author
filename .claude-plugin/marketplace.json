@@ -1,0 +1,16 @@
+{
+  "$schema": "https://code.claude.com/schemas/marketplace.json",
+  "name": "lean-author",
+  "description": "The lean-author plugin: authors Claude agents, skills and commands with lean, high-signal instructions.",
+  "owner": {
+    "name": "ajitta"
+  },
+  "plugins": [
+    {
+      "name": "lean-author",
+      "source": "./plugin",
+      "description": "Authors Claude agents, skills and commands as a plugin, with lean instructions in Markdown plus XML tags.",
+      "category": "development"
+    }
+  ]
+}

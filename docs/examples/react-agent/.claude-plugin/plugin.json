@@ -1,0 +1,9 @@
+{
+  "name": "react-agent-example",
+  "version": "0.1.0",
+  "description": "Example plugin with one React subagent, written to the portable-authoring-skill guide draft.",
+  "author": {
+    "name": "ajitta"
+  },
+  "license": "MIT"
+}
