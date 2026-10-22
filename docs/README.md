@@ -18,3 +18,4 @@ SuperClaude를 참조하되 독립적으로 agent·skill·command를 제작하�
 - [03-analysis.md](./03-analysis.md) — 제작 가이드 초안: 길이·배치, frontmatter, 본문 요소, 문체, XML, compaction, 검사 항목. references와 검사기 설계의 입력, react 예시 두 개 비교 (draft)
 - [05a-plan-standalone-repo.md](./05a-plan-standalone-repo.md) — 새 GitHub repo가 자기 마켓플레이스로 배포하는 방안: repo 구조(`plugin/` 하위 폴더), 결정 N1–N6(이름 `lean-author`, 스킬 하나), discovery 영향(NFR-3 대체), 단계 P0–P7 (draft)
 - [examples/](./examples/) — 같은 React 범위를 가이드(agent)와 skill-creator 규칙(skill)으로 만든 예시 두 개
+- [sc-author/](./sc-author/) — superclaude v4.34.3의 sc-author 원본(SKILL.md와 references 8개). 이 프로젝트의 입력 자료이며 동작하는 skill이 아님. 출처는 [ORIGIN.md](./ORIGIN.md)
